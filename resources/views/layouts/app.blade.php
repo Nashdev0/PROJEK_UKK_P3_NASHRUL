@@ -15,7 +15,7 @@
 </head>
 <body class="bg-light">
 
-@if(Auth::guard('web')->check() || Auth::guard('siswa')->check())
+@if(Auth::guard('admin')->check() || Auth::guard('siswa')->check())
     <div class="d-flex">
         <div class="sidebar p-3 d-flex flex-column shadow">
             <h4 class="text-white text-center mb-4 mt-2">Pengaduan</h4>
@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 
-                @if(Auth::guard('web')->check())
+                @if(Auth::guard('admin')->check())
                     <li class="nav-item">
                         <a href="{{ route('admin.aspirasi.index') }}" class="{{ request()->is('admin/aspirasi*') ? 'active' : '' }}">
                             Data Pengaduan
@@ -56,7 +56,7 @@
 
             <hr class="text-secondary">
             <div class="text-center text-white mb-2">
-                <small>Halo, <b>{{ Auth::guard('web')->check() ? 'Admin' : 'Siswa' }}</b></small>
+                <small>Halo, <b>{{ Auth::guard('admin')->check() ? 'Admin' : 'Siswa' }}</b></small>
             </div>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf

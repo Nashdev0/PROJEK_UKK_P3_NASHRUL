@@ -17,7 +17,7 @@ File ini ibarat **Papan Petunjuk Jalan** di depan gedung sekolah. Semua orang ya
 * **Jalan Dashboard:** `Route::get('/dashboard')` -> Ruang tunggu utama setelah berhasil masuk.
 * **Jalan Khusus (Middleware):**
   * `Route::middleware(['auth:siswa'])` -> Ini adalah **Satpam Penjaga Siswa**. Rute di dalamnya (seperti form lapor) hanya boleh dimasuki oleh Siswa yang bawa tiket (*sudah login*).
-  * `Route::middleware(['auth:web'])` -> Ini **Satpam Penjaga Admin**. Rute di dalamnya (mengatur kategori, dsb) hanya boleh dimasuki oleh Admin.
+  * `Route::middleware(['auth:admin'])` -> Ini **Satpam Penjaga Admin**. Rute di dalamnya (mengatur kategori, dsb) hanya boleh dimasuki oleh Admin.
 
 ---
 
@@ -37,7 +37,7 @@ File ini berfungsi sebagai "Resepsionis" yang mengecek kecocokan data.
 Daripada membangun *Sidebar* (menu kiri) berulang-ulang di setiap halaman, kita membuat **satu kerangka utama** di sini.
 
 Sistem kerjanya pintar (menggunakan IF):
-1. Jika yang masuk adalah Admin (`Auth::guard('web')->check()`), tampilkan menu *Data Pengaduan* dan *Data Kategori*.
+1. Jika yang masuk adalah Admin (`Auth::guard('admin')->check()`), tampilkan menu *Data Pengaduan* dan *Data Kategori*.
 2. Jika yang masuk adalah Siswa (`Auth::guard('siswa')->check()`), tampilkan menu *Kirim Pengaduan* dan *Riwayat Laporan*.
 3. **`@yield('content')`**: Ini ibarat area kanvas kosong di sebelah kanan sidebar. Nanti isi halamannya akan digambar (dirender) di area ini secara bergantian.
 

@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="card border-success">
                 <div class="card-header bg-success text-white text-center">
-                    <h4>Login Siswa</h4>
+                    <h4>Login</h4>
                 </div>
                 <div class="card-body">
                     @if (session('success'))

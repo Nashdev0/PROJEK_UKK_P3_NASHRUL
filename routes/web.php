@@ -21,7 +21,7 @@ Route::post('/register', [AuthController::class, 'registerSiswa'])->name('regist
 
 // --- 3. ROUTE DASHBOARD (SATU PINTU) ---
 Route::get('/dashboard', function () {
-    if (Auth::guard('web')->check()) {
+    if (Auth::guard('admin')->check()) {
         return view('dashboard', ['role' => 'admin']);
     } elseif (Auth::guard('siswa')->check()) {
         return view('dashboard', ['role' => 'siswa']);
@@ -36,8 +36,8 @@ Route::middleware(['auth:siswa'])->group(function () {
 
 use App\Http\Controllers\KategoriController;
 
-// --- 5. ROUTE ADMIN (DILINDUNGI MIDDLEWARE 'auth:web') ---
-Route::prefix('admin')->name('admin.')->middleware(['auth:web'])->group(function () {
+// --- 5. ROUTE ADMIN (DILINDUNGI MIDDLEWARE 'auth:admin') ---
+Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(function () {
     // Pengaduan
     Route::get('/aspirasi', [AdminController::class, 'index'])->name('aspirasi.index');
     Route::get('/aspirasi/{id}/edit', [AdminController::class, 'edit'])->name('aspirasi.edit');
